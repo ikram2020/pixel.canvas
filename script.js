@@ -3,14 +3,17 @@
 
 // When size is submitted by the user, call makeGrid()
 
- // the event is on default mode
+// the event is on default mode
 function makeGrid(event) {
     event.preventDefault()
+    
      //the variable takes the value of gridheight and gridwidth 
     let gridHeight = document.getElementById('inputHeight').value
     let gridWidth = document.getElementById('inputWidth').value
-    // gettig the document of the table  
+    // getting the document of the table  
     let ikramCanvas = document.getElementById('pixelCanvas')
+
+    resetCanvas()
 
     // uses grideHeight and gridWidth to loop and creat table rows and cols
     for(let i=0; i < gridHeight; i++) {
@@ -24,8 +27,10 @@ function makeGrid(event) {
       }
     }
 }
-  //this changes color when td gets clicked on 
+
+//this changes color when td gets clicked on.
 function gridCallback(event) {
+    // get the color value
     let userColor = document.getElementById('colorPicker').value
     let gridColor = event.target.style.backgroundColor
     if( gridColor == '') {
@@ -33,5 +38,13 @@ function gridCallback(event) {
     } else {
         event.target.style.backgroundColor = ''
     }
+}
 
+// Reset canvas rows.
+function resetCanvas() {
+  let pxlCanvas = document.getElementById('pixelCanvas')
+  let pxlRows   = pxlCanvas.rows.length
+  if( pxlRows > 0 ) {
+    pxlCanvas.innerHTML = ''
+  }
 }
